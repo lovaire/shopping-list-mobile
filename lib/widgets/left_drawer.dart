@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/screens/menu.dart';
-// TODO: Import halaman ShopFormPage jika sudah dibuat
+import 'package:shopping_list/screens/shoplist_form.dart';
+
+import '../screens/list_product.dart';
+
 
 class LeftDrawer extends StatelessWidget {
-  const LeftDrawer({Key? key});
+  const LeftDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +29,12 @@ class LeftDrawer extends StatelessWidget {
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(10)),
-                Text(
-                  "Catat seluruh keperluan belanjamu di sini!",
+                Text("Catat seluruh keperluan belanjamu di sini!",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.white,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.normal
                   ),
                 ),
               ],
@@ -43,11 +46,10 @@ class LeftDrawer extends StatelessWidget {
             // Bagian redirection ke MyHomePage
             onTap: () {
               Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MyHomePage(),
-                ),
-              );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(),
+                  ));
             },
           ),
           ListTile(
@@ -55,10 +57,23 @@ class LeftDrawer extends StatelessWidget {
             title: const Text('Tambah Produk'),
             // Bagian redirection ke ShopFormPage
             onTap: () {
-              // TODO: Buatlah routing ke ShopFormPage di sini,
-              // setelah halaman ShopFormPage sudah dibuat.
+              Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                return ShopFormPage();
+              }));
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.shopping_basket),
+            title: const Text('Daftar Produk'),
+            onTap: () {
+              // Route menu ke halaman produk
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProductPage()),
+              );
+            },
+          ),
+          // TODO: Bagian routing
         ],
       ),
     );
